@@ -26,12 +26,11 @@ jobs:
 
       - name: Build
         run: hugo --minify
-        working-directory: andre-cordeiro  # adjust if repo structure differs
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: andre-cordeiro/public
+          path: public
 
   deploy:
     environment:
