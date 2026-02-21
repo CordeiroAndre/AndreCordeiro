@@ -34,10 +34,11 @@ jobs:
           extended: true
 
       - name: Build
-        run: hugo --minify
+        run: |
+          REPO_NAME="${GITHUB_REPOSITORY#*/}"
+          hugo --minify --baseURL "https://${GITHUB_REPOSITORY_OWNER}.github.io/${REPO_NAME}/"
         env:
           HUGO_ENVIRONMENT: production
-          HUGO_BASEURL: ${{ format 'https://{0}.github.io/{1}/' github.repository_owner github.event.repository.name }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
